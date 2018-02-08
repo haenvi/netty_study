@@ -3,6 +3,7 @@ package haenvi.study.netty.server;
 
 import org.apache.log4j.BasicConfigurator;
 
+import haenvi.study.netty.handler.TestHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -38,7 +39,7 @@ public class NettyServer {
 				protected void initChannel(SocketChannel sc) throws Exception {
 					ChannelPipeline cp = sc.pipeline();
 					//TODO:
-					cp.addLast(null);
+					cp.addLast(new TestHandler());
 				}
 			});
 
