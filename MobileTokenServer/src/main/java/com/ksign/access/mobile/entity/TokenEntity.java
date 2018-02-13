@@ -20,6 +20,3 @@ public class TokenEntity {
 	
 	private Date genTime;
 }
-
-
-
