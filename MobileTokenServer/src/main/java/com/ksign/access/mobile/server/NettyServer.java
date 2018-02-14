@@ -3,6 +3,7 @@ package com.ksign.access.mobile.server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ksign.access.mobile.configure.Configure;
 import com.ksign.access.mobile.handler.TokenHandler;
 import com.ksign.access.mobile.repository.TokenEntityRepository;
 
@@ -24,9 +25,15 @@ public class NettyServer {
 	//@Autowired	TokenHandler tokenHandler;
 	@Autowired TokenEntityRepository tokenRepo;
 	
+	@Autowired Configure conf;
+	
+	
 	public void start() {
 		EventLoopGroup parentGroup = new NioEventLoopGroup(1);
 		EventLoopGroup childGroup = new NioEventLoopGroup();
+		
+		
+		System.out.println("==============" + conf.getMobileServerPort());
 		
 		try {
 			ServerBootstrap sb = new ServerBootstrap();
@@ -46,7 +53,7 @@ public class NettyServer {
 				}
 			});
 
-			ChannelFuture cf = sb.bind(29090).sync();
+			ChannelFuture cf = sb.bind(conf.getMobileServerPort()).sync();
 			cf.channel().closeFuture().sync();
 			
 		} catch(Exception e) {
