@@ -32,9 +32,6 @@ public class NettyServer {
 		EventLoopGroup parentGroup = new NioEventLoopGroup(1);
 		EventLoopGroup childGroup = new NioEventLoopGroup();
 		
-		
-		System.out.println("==============" + conf.getMobileServerPort());
-		
 		try {
 			ServerBootstrap sb = new ServerBootstrap();
 			
